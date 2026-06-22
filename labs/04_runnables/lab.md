@@ -14,13 +14,17 @@ The most important method today is:
 runnable.invoke(input_value)
 ```
 
-The runnable example is:
+Start with the small Python-only runnable example:
 
 ```bash
 python scripts/02_runnables_building_blocks.py
 ```
 
-That script prints small flow graphs before each example so you can see how data moves through the runnable pipeline.
+Then run the simplest Gemini-backed chain:
+
+```bash
+python scripts/03_gemini_summarization_chain.py
+```
 
 ## Minimal Example
 
@@ -46,7 +50,22 @@ print(chain.invoke("  billing issue  "))
 
 This prepares you for prompt-model-parser chains.
 
-## Components In The Script
+## Simplest Gemini Chain
+
+The summarization script uses one straight line of runnable composition:
+
+```text
+message -> prompt -> Gemini -> string parser -> summary
+```
+
+```python
+chain = prompt | model | StrOutputParser()
+summary = chain.invoke({"message": "..."})
+```
+
+This is the most important runnable idea: each piece accepts input, returns output, and can be connected with `|`.
+
+## Components In The Python-Only Script
 
 `RunnableLambda` wraps a normal Python function so it can use the LangChain runnable interface.
 
@@ -67,7 +86,7 @@ RunnableParallel(
 
 `RunnablePassthrough` returns the input unchanged. In the runnable script, it keeps the cleaned ticket available while the other branches compute queue and priority.
 
-## Pipeline Flow
+## Python-Only Pipeline Flow
 
 ```text
 ticket dict
@@ -105,10 +124,14 @@ ticket=RunnablePassthrough    queue=route                priority=priority_for
 
 ## Practice Lab
 
-Open `scripts/02_runnables_building_blocks.py` and try these changes.
+Start with `scripts/03_gemini_summarization_chain.py`.
+
+1. Change the input message and run the script again.
+2. Change the prompt from one sentence to three bullet points.
+3. Add a second message and invoke the same chain twice.
+
+Then open `scripts/02_runnables_building_blocks.py` and try these changes.
 
 1. Create a `RunnableLambda` that converts a ticket subject to lowercase.
 2. Create two runnables: one that strips whitespace and one that adds the prefix `"Ticket: "`. Compose them with `|`.
 3. Create a runnable that accepts a ticket dictionary and returns only the subject.
-4. Add a new field to `RunnableParallel`, such as `subject_length`.
-5. Add a third ticket to the `.batch()` example.

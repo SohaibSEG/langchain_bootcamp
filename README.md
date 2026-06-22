@@ -45,8 +45,8 @@ To run a script:
 ```bash
 python scripts/01_gemini_smoke_test.py
 python scripts/02_runnables_building_blocks.py
-python scripts/03_runnable_branching.py
-python scripts/04_langchain_gemini_chain.py
+python scripts/03_gemini_summarization_chain.py
+python scripts/04_ticket_classification_chain.py
 python scripts/05_support_ticket_pipeline.py
 python scripts/06_langgraph_state_machine_preview.py
 ```
@@ -102,8 +102,8 @@ langchain-day1/
   scripts/
     01_gemini_smoke_test.py
     02_runnables_building_blocks.py
-    03_runnable_branching.py
-    04_langchain_gemini_chain.py
+    03_gemini_summarization_chain.py
+    04_ticket_classification_chain.py
     05_support_ticket_pipeline.py
     06_langgraph_state_machine_preview.py
 
@@ -127,10 +127,10 @@ Total: 6 hours.
 | 00:30-02:00 | Python foundations | `notebooks/`, `labs/01_python_foundations/` |
 | 02:00-02:35 | Direct Gemini API | `labs/02_direct_gemini_api/`, `scripts/01_gemini_smoke_test.py` |
 | 02:35-03:10 | LangChain overview | `labs/03_langchain_overview/` |
-| 03:10-03:50 | Runnables | `labs/04_runnables/`, `scripts/02_runnables_building_blocks.py` |
+| 03:10-03:50 | Runnables | `labs/04_runnables/`, `scripts/02_runnables_building_blocks.py`, `scripts/03_gemini_summarization_chain.py` |
 | 03:50-04:30 | Prompt templates | `labs/05_prompt_templates/` |
-| 04:30-05:05 | Invocations and chains | `labs/06_invocations_and_chains/`, `scripts/04_langchain_gemini_chain.py` |
-| 05:05-05:35 | Branching and routing | `labs/07_branching_and_routing/`, `scripts/03_runnable_branching.py` |
+| 04:30-05:05 | Invocations and chains | `labs/06_invocations_and_chains/`, `scripts/04_ticket_classification_chain.py` |
+| 05:05-05:35 | Branching and routing | `labs/07_branching_and_routing/`, `scripts/05_support_ticket_pipeline.py` |
 | 05:35-05:50 | Simple AI pipeline | `labs/08_simple_ai_pipeline/`, `scripts/05_support_ticket_pipeline.py` |
 | 05:50-06:00 | LangGraph preview | `labs/09_langgraph_preview/`, `scripts/06_langgraph_state_machine_preview.py` |
 

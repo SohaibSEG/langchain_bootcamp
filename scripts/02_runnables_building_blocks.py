@@ -8,58 +8,6 @@ from rich import print
 
 Ticket = dict[str, Any]
 
-SINGLE_RUNNABLE_FLOW = """
-Single runnable flow
-
-ticket dict
-   |
-   v
-RunnableLambda(normalize_ticket)
-   |
-   v
-cleaned ticket dict
-""".strip()
-
-PARALLEL_PIPELINE_FLOW = """
-Composed runnable pipeline
-
-ticket dict
-   |
-   v
-normalize
-   |
-   v
-cleaned ticket dict
-   |
-   +--------------------------+--------------------------+
-   |                          |                          |
-   v                          v                          v
-ticket=RunnablePassthrough    queue=route                priority=priority_for
-   |                          |                          |
-   +--------------------------+--------------------------+
-                              |
-                              v
-                    {"ticket", "queue", "priority"}
-                              |
-                              v
-                          summarize
-                              |
-                              v
-                       display string
-""".strip()
-
-BATCH_FLOW = """
-Batch flow
-
-list of ticket dictionaries
-   |
-   v
-runnable_pipeline.batch(...)
-   |
-   v
-list of display strings
-""".strip()
-
 
 def normalize_ticket(ticket: Ticket) -> Ticket:
     """Clean user-provided text fields without changing the original dictionary."""
@@ -124,6 +72,9 @@ def main() -> None:
     # The | operator composes runnables from left to right:
     # output from normalize becomes input to RunnableParallel,
     # output from RunnableParallel becomes input to summarize.
+    #
+    # Flow:
+    # ticket -> normalize -> parallel(ticket, queue, priority) -> summarize
     runnable_pipeline = (
         normalize
         | RunnableParallel(
@@ -134,22 +85,13 @@ def main() -> None:
         | summarize
     )
 
-    print("[bold]Flow graph: one runnable[/bold]")
-    print(SINGLE_RUNNABLE_FLOW)
-
-    print("\n[bold]Example 1: one RunnableLambda[/bold]")
+    print("[bold]One RunnableLambda[/bold]")
     print(normalize.invoke(ticket))
 
-    print("\n[bold]Flow graph: composed runnable pipeline[/bold]")
-    print(PARALLEL_PIPELINE_FLOW)
-
-    print("\n[bold]Example 2: composed runnable pipeline[/bold]")
+    print("\n[bold]Composed runnable pipeline[/bold]")
     print(runnable_pipeline.invoke(ticket))
 
-    print("\n[bold]Flow graph: batch invocation[/bold]")
-    print(BATCH_FLOW)
-
-    print("\n[bold]Example 3: batch invocation[/bold]")
+    print("\n[bold]Batch invocation[/bold]")
     # .batch() runs the same runnable once for each item in the input list.
     print(
         runnable_pipeline.batch(

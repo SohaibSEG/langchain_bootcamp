@@ -4,50 +4,45 @@
 
 Choose different workflow paths for different support tickets.
 
-## Why Branching Appears
+## Why Routing Appears
 
 A billing refund request, a sign-in problem, and a production API outage should not all follow the same workflow.
 
-The simplest router can be plain Python:
+In this repo, routing is handled by Gemini through a structured triage schema:
 
-```python
-def route_ticket(ticket: dict) -> str:
-    text = f"{ticket['subject']} {ticket['message']}".lower()
-
-    if "charged" in text or "invoice" in text:
-        return "billing"
-    if "sign in" in text or "password" in text:
-        return "account"
-    if "production" in text or "api" in text or "timeout" in text:
-        return "technical"
-    return "support"
+```text
+ticket
+  -> Gemini classifier
+  -> TriageDecision(category, severity, queue, confidence, missing_context)
+  -> reply prompt
 ```
 
-The runnable branching example is:
+The model-based classification and routing example is in the support pipeline:
 
 ```bash
-python scripts/03_runnable_branching.py
+python scripts/05_support_ticket_pipeline.py
 ```
 
 ## Scenario
 
-You are routing tickets into queues before drafting replies. Start with deterministic rules, then put those rules behind runnable branches.
+You are routing tickets into queues before drafting replies. In the final pipeline, Gemini returns a structured triage decision with category, severity, queue, confidence, customer intent, routing reason, and missing context.
 
 ## Pipeline Target
 
 ```text
 ticket
-  -> route by keyword
-  -> choose queue-specific next action
-  -> print route and action
+  -> Gemini structured classification
+  -> queue and severity decision
+  -> reply drafting prompt
+  -> customer reply
 ```
 
 ## Practice Lab
 
-Open `scripts/03_runnable_branching.py` and adjust the routing rules.
+Open `scripts/05_support_ticket_pipeline.py` and adjust the structured triage output.
 
-1. Add a route for cancellation requests.
-2. Change the router so production issues are checked before billing issues.
-3. Add a new ticket that should hit the default Support path.
-4. Add one more branch for invoice download requests.
-5. Print the route and next action for every sample ticket.
+1. Add `cancellation` as an allowed category in the triage schema.
+2. Add `Retention` as an allowed queue.
+3. Add a cancellation ticket to `data/tickets.jsonl`.
+4. Update the triage prompt so Gemini can route cancellation tickets.
+5. Print the category, severity, queue, and confidence for every sample ticket.

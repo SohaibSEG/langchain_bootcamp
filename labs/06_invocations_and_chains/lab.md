@@ -7,7 +7,7 @@ Combine prompt templates, Gemini, and output parsing into a complete LangChain c
 ## Run It
 
 ```bash
-python scripts/04_langchain_gemini_chain.py
+python scripts/04_ticket_classification_chain.py
 ```
 
 ## Core Shape
@@ -51,7 +51,7 @@ You are building the first complete LangChain classifier for one support ticket.
 
 ## Practice Lab
 
-Open `scripts/04_langchain_gemini_chain.py` and change one part at a time.
+Open `scripts/04_ticket_classification_chain.py` and change one part at a time.
 
 1. Modify the chain so it returns only a category label.
 2. Modify the chain so it returns a suggested reply instead of a category.
