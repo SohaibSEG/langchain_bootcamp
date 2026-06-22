@@ -32,18 +32,16 @@ Subject: Charged twice for annual plan
 Message: I upgraded yesterday and my card shows two annual charges.
 ```
 
-## What To Notice
+## Scenario
 
-The direct API gives you:
+You are testing whether Gemini can help triage a single customer ticket before you build a larger workflow. Keep the script small: one ticket in, one model response out.
 
-- simple model access
-- a direct dependency on the provider SDK
-- provider-specific request and response shapes
+## Practice Lab
 
-As your app grows, these parts can become repetitive:
+Open `scripts/01_gemini_smoke_test.py` and make one small change at a time.
 
-- prompt formatting
-- parsing output
-- composing multiple steps
-- swapping components
-- branching workflow logic
+1. Change the prompt so Gemini returns only one label: `billing`, `account`, `technical`, or `product`.
+2. Change the prompt so Gemini drafts a two-sentence response to the customer.
+3. Add a different support-ticket subject and message.
+4. Add a line to the prompt that says: `Do not promise refunds or timelines.`
+5. Change `GEMINI_MODEL` in `.env` and run the script again.

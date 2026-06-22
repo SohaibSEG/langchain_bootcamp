@@ -55,14 +55,32 @@ Then move to a list of tickets. From there, you will practice filtering, advance
 - Method overriding in subclasses
 - Abstract classes with `ABC` and `@abstractmethod`
 
-## What To Notice
+## Scenario Checklist
 
-- Plain Python is enough to represent and transform support-ticket data.
-- Dictionaries are useful when you need named fields.
-- Lists are useful when you need many tickets.
-- JSON is text, while a dictionary is a Python object.
-- Named arguments can make function calls easier to read.
-- Functions help you reuse decisions.
-- Classes help when a concept has stable data and behavior.
-- Method overrides let subclasses keep the same interface while changing behavior.
-- Abstract classes define methods that subclasses must implement.
+- Store one incoming ticket.
+- Normalize the text fields.
+- Add queue and priority fields.
+- Convert the ticket to JSON for storage or transport.
+- Route several tickets from a list.
+- Package repeated logic into functions.
+- Model tickets and formatting behavior with classes.
+
+## Practice Lab
+
+Use the notebooks as your workspace. Build one ticket and keep improving it as you move through the notebook sequence.
+
+1. Create variables for a new support ticket: ticket id, customer name, subject, message, and channel.
+2. Print a one-line summary with an f-string.
+3. Represent the same ticket as a dictionary.
+4. Read the subject with required access: `ticket["subject"]`.
+5. Read a missing priority with safe access: `ticket.get("priority", "normal")`.
+6. Create a new dictionary with `**` destructuring/unpacking and add `priority` and `queue`.
+7. Convert the dictionary to JSON with `json.dumps()`, then convert it back with `json.loads()`.
+8. Create a list of three ticket dictionaries.
+9. Practice first item access, last item access, slicing the first two items, and looping over every ticket id.
+10. Create a comma-separated label string such as `"billing,urgent,refund"`, split it into a list, sort it, and print it.
+11. Write a function that returns `"urgent"` when the ticket message contains `"blocked"`, `"production"`, or `"charged twice"`.
+12. Write a formatting function with `ticket_id`, `subject`, and `priority` parameters. Call it once with positional arguments and once with named arguments.
+13. Create a `SupportTicket` class with a display-title method.
+14. Create an `EscalatedTicket` subclass that overrides the display-title method and includes `"URGENT"`.
+15. Create an abstract `TicketFormatter` class with an abstract `format` method, then create one concrete formatter subclass.

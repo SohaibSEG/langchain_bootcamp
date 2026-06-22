@@ -29,19 +29,25 @@ The runnable branching example is:
 python scripts/03_runnable_branching.py
 ```
 
-## What To Notice
+## Scenario
 
-Branching does not require an agent. A simple deterministic function is often the clearest first version.
+You are routing tickets into queues before drafting replies. Start with deterministic rules, then put those rules behind runnable branches.
 
-Once this version is clear, you can compare it with a model-based classifier and decide which one is easier to trust.
+## Pipeline Target
 
-Runnable branching keeps the workflow inside the runnable interface, but it also introduces more places to track conditions, outputs, and state. That added complexity is the opening for the LangGraph discussion.
+```text
+ticket
+  -> route by keyword
+  -> choose queue-specific next action
+  -> print route and action
+```
 
-## What Comes Next
+## Practice Lab
 
-The final Day 1 script combines:
+Open `scripts/03_runnable_branching.py` and adjust the routing rules.
 
-- ticket loading
-- deterministic routing
-- Gemini-backed response drafting
-- concise terminal output
+1. Add a route for cancellation requests.
+2. Change the router so production issues are checked before billing issues.
+3. Add a new ticket that should hit the default Support path.
+4. Add one more branch for invoice download requests.
+5. Print the route and next action for every sample ticket.

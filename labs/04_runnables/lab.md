@@ -95,11 +95,20 @@ ticket=RunnablePassthrough    queue=route                priority=priority_for
                        display string
 ```
 
-## What To Notice
+## Scenario Checklist
 
-- The first examples do not need a model.
-- Plain strings make the runnable interface easier to see.
-- The `|` operator means "pass the output to the next step."
-- `RunnableParallel` lets one input feed multiple runnable steps.
-- `RunnablePassthrough` keeps the original input available inside a parallel step.
-- `.batch()` applies the same runnable to many inputs.
+- Wrap ticket cleanup in `RunnableLambda`.
+- Use `|` to pass cleaned data to the next step.
+- Use `RunnableParallel` to compute queue and priority from the same ticket.
+- Use `RunnablePassthrough` to keep the original cleaned ticket.
+- Use `.batch()` to run the same pipeline over multiple tickets.
+
+## Practice Lab
+
+Open `scripts/02_runnables_building_blocks.py` and try these changes.
+
+1. Create a `RunnableLambda` that converts a ticket subject to lowercase.
+2. Create two runnables: one that strips whitespace and one that adds the prefix `"Ticket: "`. Compose them with `|`.
+3. Create a runnable that accepts a ticket dictionary and returns only the subject.
+4. Add a new field to `RunnableParallel`, such as `subject_length`.
+5. Add a third ticket to the `.batch()` example.

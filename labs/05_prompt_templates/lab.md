@@ -40,9 +40,20 @@ messages = prompt.invoke(
 )
 ```
 
-## What To Notice
+## Scenario Checklist
 
-- Templates make repeated prompts consistent.
-- Variables make prompts reusable.
-- Chat templates preserve message roles.
-- Prompt templates can be chained into models.
+- Create a reusable classifier prompt.
+- Keep support instructions in the system message.
+- Put ticket-specific values in the human message.
+- Invoke the prompt with multiple tickets.
+- Reuse the same template later in a chain.
+
+## Practice Lab
+
+Use the prompt template example as your starting point.
+
+1. Create a prompt template that asks for a one-word ticket category.
+2. Create a prompt template that asks for a polite two-sentence customer reply.
+3. Add a `policy` variable to a prompt template so the model can follow support rules.
+4. Invoke the prompt with two different tickets.
+5. Replace a vague instruction with a more specific support instruction.

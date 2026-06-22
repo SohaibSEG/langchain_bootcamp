@@ -2,44 +2,53 @@
 
 ## Goal
 
-Understand why LangChain exists before you write LangChain code.
+Map the support-ticket workflow into the LangChain building blocks you will use in the next labs.
 
-## What LangChain Adds
+## Scenario
 
-LangChain provides common interfaces for:
-
-- chat models
-- prompts
-- output parsers
-- runnables
-- chains
-
-The direct Gemini API is provider-specific. LangChain wraps providers behind consistent interfaces so you can compose application components in a predictable way.
-
-## What You Will Use Today
-
-Today uses only the foundational pieces:
-
-- model wrappers
-- prompt templates
-- runnable composition
-- simple branching
-
-You will not use these topics today:
-
-- RAG
-- tools
-- agents
-- memory
-- vector stores
-- persistence
-
-## Mental Model
-
-Think of LangChain as a way to connect small components:
+You have already called Gemini directly. Now turn the same support-ticket task into a reusable application shape:
 
 ```text
-input -> prompt -> model -> parser -> output
+ticket dictionary -> prompt template -> Gemini chat model -> string parser -> label or reply
 ```
 
-Each component has a common invocation shape. That shared interface is what makes chaining possible.
+The rest of the day builds this shape piece by piece.
+
+## Components
+
+- `ticket dictionary`: the application input
+- `prompt template`: turns fields into a model-ready message
+- `Gemini chat model`: produces the model response
+- `string parser`: turns the chat response into plain text
+- `chain`: connects the pieces
+
+## Target Flow
+
+```text
+{
+  "subject": "Cannot sign in after password reset",
+  "message": "Sign in loops back to the same page."
+}
+        |
+        v
+ChatPromptTemplate
+        |
+        v
+ChatGoogleGenerativeAI
+        |
+        v
+StrOutputParser
+        |
+        v
+"account"
+```
+
+## Practice Lab
+
+Create a small design sketch for the next script before writing code.
+
+1. Choose one ticket from `data/tickets.jsonl`.
+2. Write the input dictionary with only `subject` and `message`.
+3. Draft the system instruction for a ticket classifier.
+4. Draft the human message template with `{subject}` and `{message}` placeholders.
+5. Decide whether the final output should be a category label or a customer reply.

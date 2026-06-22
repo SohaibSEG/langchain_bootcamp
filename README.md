@@ -18,7 +18,7 @@ The story for the day is a realistic customer support triage and escalation assi
 10. Simple Gemini-backed AI pipeline
 11. Why LangGraph exists as the bridge to Day 2
 
-Day 1 does not cover RAG, tools, agents, memory, persistence, vector stores, or production deployment.
+The labs stay centered on one scenario: building a customer support triage and escalation workflow step by step.
 
 ## Setup
 
@@ -74,35 +74,27 @@ langchain-day1/
 
     01_python_foundations/
       lab.md
-      exercises.md
 
     02_direct_gemini_api/
       lab.md
-      exercises.md
 
     03_langchain_overview/
       lab.md
-      exercises.md
 
     04_runnables/
       lab.md
-      exercises.md
 
     05_prompt_templates/
       lab.md
-      exercises.md
 
     06_invocations_and_chains/
       lab.md
-      exercises.md
 
     07_branching_and_routing/
       lab.md
-      exercises.md
 
     08_simple_ai_pipeline/
       lab.md
-      exercises.md
 
     09_langgraph_preview/
       lab.md
@@ -144,7 +136,7 @@ Total: 6 hours.
 
 ## Teaching Notes
 
-- Keep the chronology strict. Do not use functions before the functions notebook, classes before the classes notebook, or LangChain before the direct API lab.
-- Exercises are prompts for learners, not solved answer files.
-- The examples intentionally avoid RAG, tools, agents, memory, checkpointing, vector stores, and deployment.
-- The LangGraph preview is conceptual. Day 2 should be the first day that treats graphs as a primary development surface.
+- Keep the chronology strict: functions come after the functions notebook, classes after the classes notebook, and LangChain after the direct API lab.
+- Labs include the practice prompts; there are no separate solved exercise files.
+- Each lab should move the support-ticket workflow forward with a practical task.
+- The LangGraph preview should show the same workflow as named state-machine steps.

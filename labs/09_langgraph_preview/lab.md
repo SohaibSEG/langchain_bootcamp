@@ -2,11 +2,11 @@
 
 ## Goal
 
-Understand why LangGraph becomes useful after simple chains and branches.
+Preview the same ticket workflow as named graph steps.
 
 ## Why Graphs
 
-The Day 1 pipeline is linear with a small branch:
+The support pipeline is linear with a small branch:
 
 ```text
 load -> route -> draft -> print
@@ -38,7 +38,7 @@ class TicketState(TypedDict):
     draft: str
 ```
 
-This is the bridge to Day 2. In a graph:
+In the preview graph:
 
 - state moves through named nodes
 - nodes update state
@@ -51,8 +51,18 @@ The optional runnable preview is:
 python scripts/06_langgraph_state_machine_preview.py
 ```
 
-It uses deterministic Python nodes only. It does not introduce agents, tools, memory, or persistence.
+The script uses deterministic Python nodes only.
 
-## What To Take Away
+## Practice Lab
 
-You do not need to build a full graph today. The goal is to recognize the problem LangGraph solves: coordinating stateful workflows with named steps and branching paths.
+Run the preview script and inspect the graph-shaped ticket state.
+
+```bash
+python scripts/06_langgraph_state_machine_preview.py
+```
+
+1. Identify the state fields.
+2. Identify the graph nodes.
+3. Identify where routing happens.
+4. Add a new state field named `priority`.
+5. Add a node that sets `priority` to `"urgent"` for production API issues.

@@ -45,6 +45,16 @@ result = chain.invoke(
 )
 ```
 
-## What To Notice
+## Scenario
 
-The chain is still a model call, but the application code is now organized around reusable pieces.
+You are building the first complete LangChain classifier for one support ticket. The chain should accept a ticket dictionary and return a short model-generated result.
+
+## Practice Lab
+
+Open `scripts/04_langchain_gemini_chain.py` and change one part at a time.
+
+1. Modify the chain so it returns only a category label.
+2. Modify the chain so it returns a suggested reply instead of a category.
+3. Add one extra input variable named `tone` and use it in the prompt.
+4. Change the system message and run the script again.
+5. Add a second ticket input and invoke the same chain again.
