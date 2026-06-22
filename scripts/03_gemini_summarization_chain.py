@@ -49,7 +49,6 @@ def main() -> None:
         }
     )
 
-    # Print only the result. Explanation belongs in the lab text and comments.
     print(summary)
 
 
