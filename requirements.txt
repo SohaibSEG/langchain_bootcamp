@@ -1,0 +1,13 @@
+python-dotenv
+pydantic
+google-genai
+
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+langgraph
+
+jupyter
+ipykernel
+rich

@@ -1,0 +1,4 @@
+{"id":"TCK-1001","customer":"Maya","subject":"Charged twice for annual plan","message":"I upgraded yesterday and my card shows two annual charges. Please fix this before my finance team closes the month.","channel":"email"}
+{"id":"TCK-1002","customer":"Noah","subject":"Cannot sign in after password reset","message":"The password reset link worked, but now sign in loops back to the same page. I need access for a customer demo in two hours.","channel":"chat"}
+{"id":"TCK-1003","customer":"Ava","subject":"Where do I download invoices?","message":"Can you tell me where invoices live in the dashboard? I need the last three months.","channel":"email"}
+{"id":"TCK-1004","customer":"Leo","subject":"Production API timeout","message":"Our checkout integration is timing out for every payment request. This is blocking live purchases.","channel":"web"}
