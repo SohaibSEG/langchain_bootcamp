@@ -2,7 +2,7 @@ from operator import add
 from typing import Annotated, TypedDict
 
 from dotenv import load_dotenv
-from langgraph.graph import START, StateGraph
+from langgraph.graph import END, START, StateGraph
 
 
 class TicketState(TypedDict):
@@ -26,7 +26,9 @@ def build_graph():
     graph.add_node("add_policy_note", add_policy_note)
 
     graph.add_edge(START, "add_billing_note")
-    graph.add_edge("add_billing_note", "add_policy_note")
+    graph.add_edge(START, "add_policy_note")
+    graph.add_edge("add_billing_note", END)
+    graph.add_edge("add_policy_note", END)
 
     return graph.compile()
 
