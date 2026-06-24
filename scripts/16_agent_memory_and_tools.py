@@ -20,6 +20,22 @@ CUSTOMERS = {
 }
 
 
+def message_text(message) -> str:
+    # Gemini may return content as a list of blocks instead of a plain string.
+    # For display, keep only text blocks and ignore provider metadata.
+    content = message.content
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts = [
+            block.get("text", "")
+            for block in content
+            if isinstance(block, dict) and block.get("type") == "text"
+        ]
+        return "\n".join(part for part in parts if part)
+    return str(content)
+
+
 @tool
 def lookup_customer(customer_name: str) -> dict:
     """Look up a customer's support profile by customer name."""
@@ -126,7 +142,7 @@ def main() -> None:
             state_update,
             config=config,
         )
-        print(f"Assistant: {result['messages'][-1].content}")
+        print(f"Assistant: {message_text(result['messages'][-1])}")
 
 
 if __name__ == "__main__":

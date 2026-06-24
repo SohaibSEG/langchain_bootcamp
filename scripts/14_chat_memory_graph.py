@@ -7,6 +7,22 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import START, MessagesState, StateGraph
 
 
+def message_text(message) -> str:
+    # Gemini may return content as a list of blocks instead of a plain string.
+    # For display, keep only text blocks and ignore provider metadata.
+    content = message.content
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts = [
+            block.get("text", "")
+            for block in content
+            if isinstance(block, dict) and block.get("type") == "text"
+        ]
+        return "\n".join(part for part in parts if part)
+    return str(content)
+
+
 def build_graph():
     model = ChatGoogleGenerativeAI(
         model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
@@ -67,7 +83,7 @@ def main() -> None:
             {"messages": [HumanMessage(content=text)]},
             config=config,
         )
-        print(f"Assistant: {result['messages'][-1].content}")
+        print(f"Assistant: {message_text(result['messages'][-1])}")
 
 
 if __name__ == "__main__":
