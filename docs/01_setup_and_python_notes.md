@@ -43,7 +43,7 @@ That loads `.env` before the script creates models or graphs.
 Run scripts from the repo root:
 
 ```bash
-python scripts/08_checkpointer_basics.py
+python scripts/10_checkpointer_basics.py
 ```
 
 This matters because scripts read files from paths relative to the repo root.

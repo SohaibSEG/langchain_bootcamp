@@ -17,12 +17,14 @@ The story is a realistic customer support triage and escalation assistant. Each 
 9. Branching and routing
 10. Simple Gemini-backed AI pipeline
 11. LangGraph state machines
-12. Reducers and parallel branches
-13. Checkpointers, runtime context, and stores
-14. Chat memory
-15. Agents with tools
-16. Agents with chat history and long-term memory
-17. Human review for risky actions
+12. Default state merge rules
+13. Reducers
+14. Parallel branches
+15. Checkpointers, runtime context, and stores
+16. Chat memory
+17. Agents with tools
+18. Agents with chat history and long-term memory
+19. Human review for risky actions
 
 ## Setup
 
@@ -77,16 +79,18 @@ python scripts/03_gemini_summarization_chain.py
 python scripts/04_ticket_classification_chain.py
 python scripts/05_support_ticket_pipeline.py
 python scripts/06_langgraph_state_machine_preview.py
-python scripts/07_langgraph_reducers_parallel.py
-python scripts/08_checkpointer_basics.py
-python scripts/09_runtime_context_basics.py
-python scripts/10_store_basics.py
-python scripts/11_store_with_runtime_context.py
-python scripts/12_chat_memory_graph.py
-python scripts/13_agent_with_tools.py
-python scripts/14_agent_memory_and_tools.py
-python scripts/15_human_review_basics.py
-python scripts/16_agent_human_review_tool.py
+python scripts/07_langgraph_default_merge.py
+python scripts/08_langgraph_reducers.py
+python scripts/09_langgraph_parallel_branches.py
+python scripts/10_checkpointer_basics.py
+python scripts/11_runtime_context_basics.py
+python scripts/12_store_basics.py
+python scripts/13_store_with_runtime_context.py
+python scripts/14_chat_memory_graph.py
+python scripts/15_agent_with_tools.py
+python scripts/16_agent_memory_and_tools.py
+python scripts/17_human_review_basics.py
+python scripts/18_agent_human_review_tool.py
 ```
 
 ## Repository Map
@@ -113,16 +117,18 @@ langchain-day1/
     04_ticket_classification_chain.py
     05_support_ticket_pipeline.py
     06_langgraph_state_machine_preview.py
-    07_langgraph_reducers_parallel.py
-    08_checkpointer_basics.py
-    09_runtime_context_basics.py
-    10_store_basics.py
-    11_store_with_runtime_context.py
-    12_chat_memory_graph.py
-    13_agent_with_tools.py
-    14_agent_memory_and_tools.py
-    15_human_review_basics.py
-    16_agent_human_review_tool.py
+    07_langgraph_default_merge.py
+    08_langgraph_reducers.py
+    09_langgraph_parallel_branches.py
+    10_checkpointer_basics.py
+    11_runtime_context_basics.py
+    12_store_basics.py
+    13_store_with_runtime_context.py
+    14_chat_memory_graph.py
+    15_agent_with_tools.py
+    16_agent_memory_and_tools.py
+    17_human_review_basics.py
+    18_agent_human_review_tool.py
 
   data/
     tickets.jsonl
@@ -152,9 +158,9 @@ Total: 6 hours.
 | 02:00-02:35 | Direct Gemini API | `docs/02_gemini_langchain_notes.md`, `scripts/01_gemini_smoke_test.py` |
 | 02:35-03:20 | LangChain overview, prompts, chains | `docs/02_gemini_langchain_notes.md`, `docs/03_runnables_and_chains_notes.md` |
 | 03:20-04:15 | Runnables and support pipeline | `scripts/02_runnables_building_blocks.py`, `scripts/03_gemini_summarization_chain.py`, `scripts/04_ticket_classification_chain.py`, `scripts/05_support_ticket_pipeline.py` |
-| 04:15-05:15 | LangGraph state and runtime | `docs/04_langgraph_runtime_notes.md`, `scripts/06_langgraph_state_machine_preview.py`, `scripts/07_langgraph_reducers_parallel.py`, `scripts/08_checkpointer_basics.py`, `scripts/09_runtime_context_basics.py`, `scripts/10_store_basics.py`, `scripts/11_store_with_runtime_context.py` |
-| 05:15-05:45 | Chat memory and agents | `docs/05_agents_tools_memory_notes.md`, `scripts/12_chat_memory_graph.py`, `scripts/13_agent_with_tools.py`, `scripts/14_agent_memory_and_tools.py` |
-| 05:45-06:00 | Human review preview | `docs/06_human_in_the_loop_notes.md`, `scripts/15_human_review_basics.py`, `scripts/16_agent_human_review_tool.py` |
+| 04:15-05:15 | LangGraph state and runtime | `docs/04_langgraph_runtime_notes.md`, `scripts/06_langgraph_state_machine_preview.py`, `scripts/07_langgraph_default_merge.py`, `scripts/08_langgraph_reducers.py`, `scripts/09_langgraph_parallel_branches.py`, `scripts/10_checkpointer_basics.py`, `scripts/11_runtime_context_basics.py`, `scripts/12_store_basics.py`, `scripts/13_store_with_runtime_context.py` |
+| 05:15-05:45 | Chat memory and agents | `docs/05_agents_tools_memory_notes.md`, `scripts/14_chat_memory_graph.py`, `scripts/15_agent_with_tools.py`, `scripts/16_agent_memory_and_tools.py` |
+| 05:45-06:00 | Human review preview | `docs/06_human_in_the_loop_notes.md`, `scripts/17_human_review_basics.py`, `scripts/18_agent_human_review_tool.py` |
 
 ## Teaching Notes
 

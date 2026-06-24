@@ -65,16 +65,18 @@ tools as Python functions
 | `04_ticket_classification_chain.py` | Classification chain |
 | `05_support_ticket_pipeline.py` | Simple AI support pipeline |
 | `06_langgraph_state_machine_preview.py` | LangGraph nodes and conditional edges |
-| `07_langgraph_reducers_parallel.py` | Reducers and parallel branches |
-| `08_checkpointer_basics.py` | Checkpointer and `thread_id` |
-| `09_runtime_context_basics.py` | Runtime context |
-| `10_store_basics.py` | Store namespaces and keys |
-| `11_store_with_runtime_context.py` | Store + runtime context |
-| `12_chat_memory_graph.py` | Chat memory with `MessagesState` |
-| `13_agent_with_tools.py` | Agent loop and tools |
-| `14_agent_memory_and_tools.py` | Agent with chat history and long-term memory |
-| `15_human_review_basics.py` | Basic interrupt and resume |
-| `16_agent_human_review_tool.py` | Human review before risky agent tool |
+| `07_langgraph_default_merge.py` | Default state merge rules |
+| `08_langgraph_reducers.py` | Reducers |
+| `09_langgraph_parallel_branches.py` | Parallel branches |
+| `10_checkpointer_basics.py` | Checkpointer and `thread_id` |
+| `11_runtime_context_basics.py` | Runtime context |
+| `12_store_basics.py` | Store namespaces and keys |
+| `13_store_with_runtime_context.py` | Store + runtime context |
+| `14_chat_memory_graph.py` | Chat memory with `MessagesState` |
+| `15_agent_with_tools.py` | Agent loop and tools |
+| `16_agent_memory_and_tools.py` | Agent with chat history and long-term memory |
+| `17_human_review_basics.py` | Basic interrupt and resume |
+| `18_agent_human_review_tool.py` | Human review before risky agent tool |
 
 ## Core Contracts
 
