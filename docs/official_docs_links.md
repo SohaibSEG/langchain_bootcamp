@@ -5,4 +5,12 @@
 - LangChain Python docs: https://docs.langchain.com/oss/python/langchain/overview
 - LangChain Google Generative AI integration: https://docs.langchain.com/oss/python/integrations/chat/google_generative_ai
 - LangChain Core API reference: https://reference.langchain.com/python/langchain-core/
-- LangGraph docs: https://langchain-ai.github.io/langgraph/
+- LangChain agents: https://docs.langchain.com/oss/python/langchain/agents
+- LangChain tools: https://docs.langchain.com/oss/python/langchain/tools
+- LangChain short-term memory: https://docs.langchain.com/oss/python/langchain/short-term-memory
+- LangChain human in the loop: https://docs.langchain.com/oss/python/langchain/human-in-the-loop
+- LangGraph docs: https://docs.langchain.com/oss/python/langgraph/overview
+- LangGraph graph API: https://docs.langchain.com/oss/python/langgraph/use-graph-api
+- LangGraph persistence and checkpointers: https://docs.langchain.com/oss/python/langgraph/persistence
+- LangGraph interrupts: https://docs.langchain.com/oss/python/langgraph/interrupts
+- LangChain RunnableConfig reference: https://reference.langchain.com/python/langchain-core/runnables/config/RunnableConfig

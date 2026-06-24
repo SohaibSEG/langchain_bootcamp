@@ -19,7 +19,7 @@ def main() -> None:
 
     model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
-    # temperature=0 makes the example more repeatable for teaching.
+    # temperature=0 makes the model choose more consistent wording.
     model = ChatGoogleGenerativeAI(model=model_name, temperature=0)
 
     # A chat prompt has roles. The system message gives the model its job;
