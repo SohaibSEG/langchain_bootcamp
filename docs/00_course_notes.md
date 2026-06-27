@@ -19,6 +19,7 @@ Read the notes in this order:
 04_langgraph_runtime_notes.md
 05_agents_tools_memory_notes.md
 06_human_in_the_loop_notes.md
+07_rag_notes.md
 ```
 
 Reference pages:
@@ -44,6 +45,7 @@ Python data
   -> agents with tools
   -> agents with chat history and long-term memory
   -> human review for risky actions
+  -> RAG over a document with local models
 ```
 
 This order matters. Do not introduce agents before students understand:
@@ -77,6 +79,7 @@ tools as Python functions
 | `16_agent_memory_and_tools.py` | Agent with chat history and long-term memory |
 | `17_human_review_basics.py` | Basic interrupt and resume |
 | `18_agent_human_review_tool.py` | Human review before risky agent tool |
+| `19_owasp_llm_rag_chat.py` | Chat over the OWASP LLM RAG index |
 
 ## Core Contracts
 
@@ -132,6 +135,27 @@ agent.invoke(
 ```
 
 The `messages` key is part of LangChain's built-in agent state.
+
+### RAG Contracts
+
+```python
+documents = retriever.invoke(question)
+```
+
+A retriever returns `Document` objects, not final answers.
+
+```python
+answer = rag_chain.invoke(
+    {
+        "question": question,
+        "context": formatted_documents,
+        "history": formatted_history,
+    }
+)
+```
+
+The online RAG script loads an existing Chroma index. The notebooks build that
+index from the OWASP PDF.
 
 ## Teaching Guidance
 

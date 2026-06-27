@@ -52,6 +52,36 @@ Per-run application information passed with `context=...`, such as the current c
 
 A function that tells LangGraph how to combine multiple updates to the same state field. For example, `Annotated[list[str], add]` appends list updates instead of replacing the whole list. See `scripts/08_langgraph_reducers.py`.
 
+## RAG
+
+Retrieval augmented generation. The app retrieves relevant source chunks first,
+then asks a model to answer using those chunks as context. See
+`docs/07_rag_notes.md`.
+
+## Document
+
+LangChain object with `page_content` and `metadata`. RAG uses `page_content` for
+search and `metadata` for citations.
+
+## Chunk
+
+A smaller piece of a source document. Chunking decides what text the retriever
+can find and pass to the model.
+
+## Embedding
+
+A numeric representation of text used for similarity search. In this repo, the
+RAG module uses Ollama embeddings for the OWASP document.
+
+## Vector Store
+
+A database that stores embedded chunks. The RAG module uses Chroma.
+
+## Retriever
+
+LangChain component that takes a query and returns relevant `Document` objects.
+It does not write the final answer.
+
 ## Store
 
 Long-term application memory. Stores keep app data such as customer preferences outside a single graph thread. See `scripts/12_store_basics.py`.

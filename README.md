@@ -25,6 +25,8 @@ The story is a realistic customer support triage and escalation assistant. Each 
 17. Agents with tools
 18. Agents with chat history and long-term memory
 19. Human review for risky actions
+20. RAG indexing and retrieval
+21. Local RAG chat with OWASP Top 10 for LLM Applications
 
 ## Setup
 
@@ -39,6 +41,13 @@ cp .env.example .env
 ```
 
 Edit `.env` and set `GOOGLE_API_KEY`.
+
+For the local RAG module, install and start Ollama, then pull the local models:
+
+```bash
+ollama pull gemma4:e4b
+ollama pull embeddinggemma
+```
 
 To open the notebooks:
 
@@ -58,6 +67,7 @@ docs/03_runnables_and_chains_notes.md
 docs/04_langgraph_runtime_notes.md
 docs/05_agents_tools_memory_notes.md
 docs/06_human_in_the_loop_notes.md
+docs/07_rag_notes.md
 ```
 
 Reference docs:
@@ -91,6 +101,7 @@ python scripts/15_agent_with_tools.py
 python scripts/16_agent_memory_and_tools.py
 python scripts/17_human_review_basics.py
 python scripts/18_agent_human_review_tool.py
+python scripts/19_owasp_llm_rag_chat.py
 ```
 
 ## Repository Map
@@ -109,6 +120,9 @@ langchain-day1/
     04_python_strings_conditions_loops.ipynb
     05_python_functions_type_hints.ipynb
     06_python_classes_inheritance.ipynb
+    07_rag_pdf_parsing_cleaning.ipynb
+    08_rag_chunking_strategies.ipynb
+    09_rag_embeddings_chroma_indexing.ipynb
 
   scripts/
     01_gemini_smoke_test.py
@@ -129,10 +143,12 @@ langchain-day1/
     16_agent_memory_and_tools.py
     17_human_review_basics.py
     18_agent_human_review_tool.py
+    19_owasp_llm_rag_chat.py
 
   data/
     tickets.jsonl
     support_policy.md
+    owasp_top10_llm_applications.pdf
 
   docs/
     00_course_notes.md
@@ -142,6 +158,7 @@ langchain-day1/
     04_langgraph_runtime_notes.md
     05_agents_tools_memory_notes.md
     06_human_in_the_loop_notes.md
+    07_rag_notes.md
     glossary.md
     troubleshooting.md
     official_docs_links.md
@@ -161,6 +178,7 @@ Total: 6 hours.
 | 04:15-05:15 | LangGraph state and runtime | `docs/04_langgraph_runtime_notes.md`, `scripts/06_langgraph_state_machine_preview.py`, `scripts/07_langgraph_default_merge.py`, `scripts/08_langgraph_reducers.py`, `scripts/09_langgraph_parallel_branches.py`, `scripts/10_checkpointer_basics.py`, `scripts/11_runtime_context_basics.py`, `scripts/12_store_basics.py`, `scripts/13_store_with_runtime_context.py` |
 | 05:15-05:45 | Chat memory and agents | `docs/05_agents_tools_memory_notes.md`, `scripts/14_chat_memory_graph.py`, `scripts/15_agent_with_tools.py`, `scripts/16_agent_memory_and_tools.py` |
 | 05:45-06:00 | Human review preview | `docs/06_human_in_the_loop_notes.md`, `scripts/17_human_review_basics.py`, `scripts/18_agent_human_review_tool.py` |
+| Next module | RAG with local models | `docs/07_rag_notes.md`, `notebooks/07_rag_pdf_parsing_cleaning.ipynb`, `notebooks/08_rag_chunking_strategies.ipynb`, `notebooks/09_rag_embeddings_chroma_indexing.ipynb`, `scripts/19_owasp_llm_rag_chat.py` |
 
 ## Teaching Notes
 
@@ -168,3 +186,4 @@ Total: 6 hours.
 - Introduce one runtime concept at a time before combining concepts.
 - Explanations belong in comments and Markdown notes. Script output should show inspected values, not lecture text.
 - The support-ticket scenario should stay consistent across examples.
+- The RAG module uses OWASP Top 10 for LLM Applications instead of the support-ticket scenario because it needs a longer source document for parsing and chunking.

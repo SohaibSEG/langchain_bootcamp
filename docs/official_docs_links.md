@@ -14,3 +14,8 @@
 - LangGraph persistence and checkpointers: https://docs.langchain.com/oss/python/langgraph/persistence
 - LangGraph interrupts: https://docs.langchain.com/oss/python/langgraph/interrupts
 - LangChain RunnableConfig reference: https://reference.langchain.com/python/langchain-core/runnables/config/RunnableConfig
+- LangChain retrieval: https://docs.langchain.com/oss/python/langchain/retrieval
+- LangChain document loaders: https://docs.langchain.com/oss/python/integrations/document_loaders
+- LangChain text splitters: https://docs.langchain.com/oss/python/integrations/splitters
+- LangChain Chroma integration: https://docs.langchain.com/oss/python/integrations/vectorstores/chroma
+- LangChain Ollama integration: https://docs.langchain.com/oss/python/integrations/providers/ollama
