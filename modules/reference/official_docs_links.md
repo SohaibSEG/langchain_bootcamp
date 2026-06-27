@@ -19,3 +19,9 @@
 - LangChain text splitters: https://docs.langchain.com/oss/python/integrations/splitters
 - LangChain Chroma integration: https://docs.langchain.com/oss/python/integrations/vectorstores/chroma
 - LangChain Ollama integration: https://docs.langchain.com/oss/python/integrations/providers/ollama
+- Ollama download: https://ollama.com/download
+- Ollama `embeddinggemma` model: https://ollama.com/library/embeddinggemma
+- Ollama `gemma4:e4b` model: https://ollama.com/library/gemma4:e4b
+- Docling quickstart: https://docling-project.github.io/docling/getting_started/quickstart/
+- Docling `DocumentConverter`: https://docling-project.github.io/docling/reference/document_converter/
+- OWASP Top 10 for LLM Applications PDF source: https://github.com/GURPREETKAURJETHRA/LLM-SECURITY/blob/main/OWASP%20TOP%2010%20FOR%20LLM%20APPLICATIONS.pdf

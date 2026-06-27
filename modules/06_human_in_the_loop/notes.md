@@ -5,8 +5,8 @@ This document explains human review with LangGraph interrupts and agent tool app
 Scripts:
 
 ```bash
-python scripts/17_human_review_basics.py
-python scripts/18_agent_human_review_tool.py
+python modules/06_human_in_the_loop/scripts/17_human_review_basics.py
+python modules/06_human_in_the_loop/scripts/18_agent_human_review_tool.py
 ```
 
 ## Why Human Review Exists
@@ -43,7 +43,7 @@ The checkpointer is required. Without it, LangGraph cannot resume the exact paus
 Script:
 
 ```bash
-python scripts/17_human_review_basics.py
+python modules/06_human_in_the_loop/scripts/17_human_review_basics.py
 ```
 
 Graph:
@@ -146,7 +146,7 @@ If rejected:
 Script:
 
 ```bash
-python scripts/18_agent_human_review_tool.py
+python modules/06_human_in_the_loop/scripts/18_agent_human_review_tool.py
 ```
 
 This script uses an agent with two tools:

@@ -7,15 +7,15 @@ The goal is to understand how LangGraph moves data through a graph before adding
 ## Scripts Covered
 
 ```bash
-python scripts/06_langgraph_state_machine_preview.py
-python scripts/07_langgraph_default_merge.py
-python scripts/08_langgraph_reducers.py
-python scripts/09_langgraph_parallel_branches.py
-python scripts/10_checkpointer_basics.py
-python scripts/11_runtime_context_basics.py
-python scripts/12_store_basics.py
-python scripts/13_store_with_runtime_context.py
-python scripts/14_chat_memory_graph.py
+python modules/04_langgraph_runtime/scripts/06_langgraph_state_machine_preview.py
+python modules/04_langgraph_runtime/scripts/07_langgraph_default_merge.py
+python modules/04_langgraph_runtime/scripts/08_langgraph_reducers.py
+python modules/04_langgraph_runtime/scripts/09_langgraph_parallel_branches.py
+python modules/04_langgraph_runtime/scripts/10_checkpointer_basics.py
+python modules/04_langgraph_runtime/scripts/11_runtime_context_basics.py
+python modules/04_langgraph_runtime/scripts/12_store_basics.py
+python modules/04_langgraph_runtime/scripts/13_store_with_runtime_context.py
+python modules/04_langgraph_runtime/scripts/14_chat_memory_graph.py
 ```
 
 ## Mental Model
@@ -107,7 +107,7 @@ LangGraph merged that update into the existing state.
 Script:
 
 ```bash
-python scripts/07_langgraph_default_merge.py
+python modules/04_langgraph_runtime/scripts/07_langgraph_default_merge.py
 ```
 
 By default, state fields are replaced.
@@ -153,7 +153,7 @@ Merged result:
 Script:
 
 ```bash
-python scripts/06_langgraph_state_machine_preview.py
+python modules/04_langgraph_runtime/scripts/06_langgraph_state_machine_preview.py
 ```
 
 This script uses Gemini inside LangGraph nodes.
@@ -220,7 +220,7 @@ Then LangGraph chooses the next node:
 Script:
 
 ```bash
-python scripts/08_langgraph_reducers.py
+python modules/04_langgraph_runtime/scripts/08_langgraph_reducers.py
 ```
 
 Default merge is replacement. Sometimes replacement is not what you want.
@@ -292,7 +292,7 @@ After two nodes add notes, the result is:
 Script:
 
 ```bash
-python scripts/09_langgraph_parallel_branches.py
+python modules/04_langgraph_runtime/scripts/09_langgraph_parallel_branches.py
 ```
 
 Reducers become important when branches run in parallel.
@@ -339,7 +339,7 @@ Without the reducer, two parallel writes to the same field would be ambiguous.
 Script:
 
 ```bash
-python scripts/10_checkpointer_basics.py
+python modules/04_langgraph_runtime/scripts/10_checkpointer_basics.py
 ```
 
 A checkpointer saves graph state by thread.
@@ -429,7 +429,7 @@ Final state:
 Script:
 
 ```bash
-python scripts/11_runtime_context_basics.py
+python modules/04_langgraph_runtime/scripts/11_runtime_context_basics.py
 ```
 
 Runtime context is data about the current run.
@@ -506,7 +506,7 @@ Context is read by nodes.
 Script:
 
 ```bash
-python scripts/12_store_basics.py
+python modules/04_langgraph_runtime/scripts/12_store_basics.py
 ```
 
 A store is long-term application memory.
@@ -574,7 +574,7 @@ Value:
 Script:
 
 ```bash
-python scripts/13_store_with_runtime_context.py
+python modules/04_langgraph_runtime/scripts/13_store_with_runtime_context.py
 ```
 
 This combines store and context.
@@ -627,7 +627,7 @@ runtime.store   -> what long-term data exists?
 Script:
 
 ```bash
-python scripts/14_chat_memory_graph.py
+python modules/04_langgraph_runtime/scripts/14_chat_memory_graph.py
 ```
 
 Chat memory is graph state plus a checkpointer.

@@ -5,10 +5,10 @@ This document explains LangChain's composition model.
 Scripts:
 
 ```bash
-python scripts/02_runnables_building_blocks.py
-python scripts/03_gemini_summarization_chain.py
-python scripts/04_ticket_classification_chain.py
-python scripts/05_support_ticket_pipeline.py
+python modules/03_runnables_chains/scripts/02_runnables_building_blocks.py
+python modules/02_gemini_langchain/scripts/03_gemini_summarization_chain.py
+python modules/03_runnables_chains/scripts/04_ticket_classification_chain.py
+python modules/03_runnables_chains/scripts/05_support_ticket_pipeline.py
 ```
 
 ## Runnable
@@ -229,7 +229,7 @@ small runnable
 Script:
 
 ```bash
-python scripts/05_support_ticket_pipeline.py
+python modules/03_runnables_chains/scripts/05_support_ticket_pipeline.py
 ```
 
 The support pipeline combines:

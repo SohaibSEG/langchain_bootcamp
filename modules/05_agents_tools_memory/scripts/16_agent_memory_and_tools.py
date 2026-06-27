@@ -10,7 +10,9 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.store.memory import InMemoryStore
 
 
-ROOT = Path(__file__).resolve().parents[1]
+# This script lives at modules/05_agents_tools_memory/scripts/.
+# parents[3] is the repository root, no matter where the repo was cloned.
+ROOT = Path(__file__).resolve().parents[3]
 POLICY_PATH = ROOT / "data" / "support_policy.md"
 
 CUSTOMERS = {

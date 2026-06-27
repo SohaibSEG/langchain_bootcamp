@@ -14,7 +14,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel, Field
 
 
-ROOT = Path(__file__).resolve().parents[1]
+# This script lives at modules/03_runnables_chains/scripts/.
+# parents[3] is the repository root, no matter where the repo was cloned.
+ROOT = Path(__file__).resolve().parents[3]
 TICKETS_PATH = ROOT / "data" / "tickets.jsonl"
 POLICY_PATH = ROOT / "data" / "support_policy.md"
 

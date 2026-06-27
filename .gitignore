@@ -5,5 +5,3 @@ __pycache__/
 *.pyc
 .DS_Store
 data/chroma_owasp_llm/
-data/owasp_top10_llm_pages.jsonl
-data/owasp_top10_llm_chunks.jsonl

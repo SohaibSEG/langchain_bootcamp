@@ -10,7 +10,7 @@ langchain-text-splitters
 langchain-chroma
 langchain-ollama
 langgraph
-pypdf
+docling
 
 jupyter
 ipykernel

@@ -27,7 +27,7 @@ Install the current environment as a notebook kernel:
 python -m ipykernel install --user --name langchain-day1 --display-name "Python (langchain-day1)"
 ```
 
-## RAG Notebook Cannot Import Chroma Or Ollama
+## RAG Notebook Cannot Import Docling, Chroma, Or Ollama
 
 Install the updated requirements:
 
@@ -37,24 +37,40 @@ python -m pip install -r requirements.txt
 
 ## RAG Chat Cannot Find The Chroma Index
 
-Run the RAG notebooks in order:
+Build the offline index:
 
-```text
-notebooks/07_rag_pdf_parsing_cleaning.ipynb
-notebooks/08_rag_chunking_strategies.ipynb
-notebooks/09_rag_embeddings_chroma_indexing.ipynb
+```bash
+python modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py
 ```
 
-The chat script reads `data/chroma_owasp_llm`. It does not build the index.
+The Chroma index is created by the offline indexing script.
 
 ## RAG Chat Cannot Reach Ollama
 
-Start Ollama and pull the local models:
+Start Ollama.
+
+On macOS or Linux, if the app is not already running:
 
 ```bash
-ollama pull gemma4:e4b
-ollama pull embeddinggemma
+ollama serve
 ```
+
+On Windows, start Ollama from the Start menu.
+
+`ollama serve` keeps running. Open another terminal before pulling the local
+models:
+
+```bash
+ollama --version
+ollama pull embeddinggemma
+ollama pull gemma4:e4b
+ollama list
+```
+
+The default Ollama API address is `http://localhost:11434`.
+
+If `ollama pull embeddinggemma` fails, update Ollama and retry. The embedding
+model requires a recent Ollama release.
 
 ## Gemini quota or authentication errors
 

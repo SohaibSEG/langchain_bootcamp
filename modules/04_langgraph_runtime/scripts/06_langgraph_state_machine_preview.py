@@ -14,7 +14,9 @@ from langgraph.graph import END, START, StateGraph
 from pydantic import BaseModel, Field
 
 
-ROOT = Path(__file__).resolve().parents[1]
+# This script lives at modules/04_langgraph_runtime/scripts/.
+# parents[3] is the repository root, no matter where the repo was cloned.
+ROOT = Path(__file__).resolve().parents[3]
 POLICY_PATH = ROOT / "data" / "support_policy.md"
 
 

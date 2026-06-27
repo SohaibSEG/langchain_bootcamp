@@ -13,21 +13,21 @@ The examples intentionally reuse the same domain so students can focus on one ne
 Read the notes in this order:
 
 ```text
-01_setup_and_python_notes.md
-02_gemini_langchain_notes.md
-03_runnables_and_chains_notes.md
-04_langgraph_runtime_notes.md
-05_agents_tools_memory_notes.md
-06_human_in_the_loop_notes.md
-07_rag_notes.md
+modules/01_setup_python/notes.md
+modules/02_gemini_langchain/notes.md
+modules/03_runnables_chains/notes.md
+modules/04_langgraph_runtime/notes.md
+modules/05_agents_tools_memory/notes.md
+modules/06_human_in_the_loop/notes.md
+modules/07_rag_owasp_llm/notes.md
 ```
 
 Reference pages:
 
 ```text
-glossary.md
-troubleshooting.md
-official_docs_links.md
+modules/reference/glossary.md
+modules/reference/troubleshooting.md
+modules/reference/official_docs_links.md
 ```
 
 ## Learning Progression
@@ -48,7 +48,8 @@ Python data
   -> RAG over a document with local models
 ```
 
-This order matters. Do not introduce agents before students understand:
+Each layer depends on the previous one. Agents are easier to understand after
+these ideas are already familiar:
 
 ```text
 messages
@@ -79,7 +80,8 @@ tools as Python functions
 | `16_agent_memory_and_tools.py` | Agent with chat history and long-term memory |
 | `17_human_review_basics.py` | Basic interrupt and resume |
 | `18_agent_human_review_tool.py` | Human review before risky agent tool |
-| `19_owasp_llm_rag_chat.py` | Chat over the OWASP LLM RAG index |
+| `19_owasp_llm_build_index.py` | Offline OWASP RAG indexing |
+| `20_owasp_llm_rag_chat.py` | Online chat over the OWASP RAG index |
 
 ## Core Contracts
 
@@ -149,15 +151,15 @@ answer = rag_chain.invoke(
     {
         "question": question,
         "context": formatted_documents,
-        "history": formatted_history,
     }
 )
 ```
 
-The online RAG script loads an existing Chroma index. The notebooks build that
-index from the OWASP PDF.
+The RAG notebook walks through Docling parsing, chunking, and retrieval
+inspection. The offline RAG script builds the Chroma index from the OWASP PDF.
+The online RAG script loads that existing index.
 
-## Teaching Guidance
+## How To Read The Examples
 
 For each script, identify:
 
@@ -169,4 +171,6 @@ the line that connects to LangChain or LangGraph
 the expected output shape
 ```
 
-Keep explanations close to the code comments. Script output should print inspected values, not lecture text.
+The comments identify the important contracts near the code that uses them.
+Script output focuses on inspected values such as state, messages, retrieved
+documents, and final answers.

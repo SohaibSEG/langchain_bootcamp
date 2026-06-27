@@ -2,7 +2,7 @@
 
 This repository is the teaching artifact for Day 1 of a LangChain and LangGraph bootcamp.
 
-The course is documentation-first and instructor-led. Learners use notebooks for Python foundations, Markdown notes for explanation, and focused scripts for runnable examples.
+The repo is documentation-first. Learners use notebooks for inspectable walkthroughs, Markdown notes for explanations, and focused scripts for runnable examples.
 
 The story is a realistic customer support triage and escalation assistant. Each lesson adds one idea at a time:
 
@@ -42,12 +42,32 @@ cp .env.example .env
 
 Edit `.env` and set `GOOGLE_API_KEY`.
 
-For the local RAG module, install and start Ollama, then pull the local models:
+For the local RAG module, install Ollama and start the Ollama app or server.
 
 ```bash
-ollama pull gemma4:e4b
-ollama pull embeddinggemma
+# macOS, with Homebrew
+brew install ollama
+ollama serve
+
+# Windows
+# Install Ollama from https://ollama.com/download and start it from the Start menu.
 ```
+
+`ollama serve` keeps running while the API is active. Open another terminal,
+activate the virtual environment again, then pull the models once:
+
+```bash
+ollama --version
+ollama pull embeddinggemma
+ollama pull gemma4:e4b
+ollama list
+```
+
+By default, Ollama serves its local API at `http://localhost:11434`. This repo
+uses that default through `OLLAMA_BASE_URL` in `.env`.
+
+If `ollama pull embeddinggemma` fails, update Ollama and retry. The embedding
+model requires a recent Ollama release.
 
 To open the notebooks:
 
@@ -60,22 +80,22 @@ jupyter lab
 Read these in order:
 
 ```text
-docs/00_course_notes.md
-docs/01_setup_and_python_notes.md
-docs/02_gemini_langchain_notes.md
-docs/03_runnables_and_chains_notes.md
-docs/04_langgraph_runtime_notes.md
-docs/05_agents_tools_memory_notes.md
-docs/06_human_in_the_loop_notes.md
-docs/07_rag_notes.md
+modules/00_course_overview/notes.md
+modules/01_setup_python/notes.md
+modules/02_gemini_langchain/notes.md
+modules/03_runnables_chains/notes.md
+modules/04_langgraph_runtime/notes.md
+modules/05_agents_tools_memory/notes.md
+modules/06_human_in_the_loop/notes.md
+modules/07_rag_owasp_llm/notes.md
 ```
 
 Reference docs:
 
 ```text
-docs/glossary.md
-docs/troubleshooting.md
-docs/official_docs_links.md
+modules/reference/glossary.md
+modules/reference/troubleshooting.md
+modules/reference/official_docs_links.md
 ```
 
 ## Scripts
@@ -83,25 +103,26 @@ docs/official_docs_links.md
 Run scripts from the repo root:
 
 ```bash
-python scripts/01_gemini_smoke_test.py
-python scripts/02_runnables_building_blocks.py
-python scripts/03_gemini_summarization_chain.py
-python scripts/04_ticket_classification_chain.py
-python scripts/05_support_ticket_pipeline.py
-python scripts/06_langgraph_state_machine_preview.py
-python scripts/07_langgraph_default_merge.py
-python scripts/08_langgraph_reducers.py
-python scripts/09_langgraph_parallel_branches.py
-python scripts/10_checkpointer_basics.py
-python scripts/11_runtime_context_basics.py
-python scripts/12_store_basics.py
-python scripts/13_store_with_runtime_context.py
-python scripts/14_chat_memory_graph.py
-python scripts/15_agent_with_tools.py
-python scripts/16_agent_memory_and_tools.py
-python scripts/17_human_review_basics.py
-python scripts/18_agent_human_review_tool.py
-python scripts/19_owasp_llm_rag_chat.py
+python modules/02_gemini_langchain/scripts/01_gemini_smoke_test.py
+python modules/03_runnables_chains/scripts/02_runnables_building_blocks.py
+python modules/02_gemini_langchain/scripts/03_gemini_summarization_chain.py
+python modules/03_runnables_chains/scripts/04_ticket_classification_chain.py
+python modules/03_runnables_chains/scripts/05_support_ticket_pipeline.py
+python modules/04_langgraph_runtime/scripts/06_langgraph_state_machine_preview.py
+python modules/04_langgraph_runtime/scripts/07_langgraph_default_merge.py
+python modules/04_langgraph_runtime/scripts/08_langgraph_reducers.py
+python modules/04_langgraph_runtime/scripts/09_langgraph_parallel_branches.py
+python modules/04_langgraph_runtime/scripts/10_checkpointer_basics.py
+python modules/04_langgraph_runtime/scripts/11_runtime_context_basics.py
+python modules/04_langgraph_runtime/scripts/12_store_basics.py
+python modules/04_langgraph_runtime/scripts/13_store_with_runtime_context.py
+python modules/04_langgraph_runtime/scripts/14_chat_memory_graph.py
+python modules/05_agents_tools_memory/scripts/15_agent_with_tools.py
+python modules/05_agents_tools_memory/scripts/16_agent_memory_and_tools.py
+python modules/06_human_in_the_loop/scripts/17_human_review_basics.py
+python modules/06_human_in_the_loop/scripts/18_agent_human_review_tool.py
+python modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py
+python modules/07_rag_owasp_llm/scripts/20_owasp_llm_rag_chat.py
 ```
 
 ## Repository Map
@@ -113,55 +134,42 @@ langchain-day1/
   .env.example
   .gitignore
 
-  notebooks/
-    01_python_values_variables.ipynb
-    02_python_dictionaries.ipynb
-    03_python_lists.ipynb
-    04_python_strings_conditions_loops.ipynb
-    05_python_functions_type_hints.ipynb
-    06_python_classes_inheritance.ipynb
-    07_rag_pdf_parsing_cleaning.ipynb
-    08_rag_chunking_strategies.ipynb
-    09_rag_embeddings_chroma_indexing.ipynb
-
-  scripts/
-    01_gemini_smoke_test.py
-    02_runnables_building_blocks.py
-    03_gemini_summarization_chain.py
-    04_ticket_classification_chain.py
-    05_support_ticket_pipeline.py
-    06_langgraph_state_machine_preview.py
-    07_langgraph_default_merge.py
-    08_langgraph_reducers.py
-    09_langgraph_parallel_branches.py
-    10_checkpointer_basics.py
-    11_runtime_context_basics.py
-    12_store_basics.py
-    13_store_with_runtime_context.py
-    14_chat_memory_graph.py
-    15_agent_with_tools.py
-    16_agent_memory_and_tools.py
-    17_human_review_basics.py
-    18_agent_human_review_tool.py
-    19_owasp_llm_rag_chat.py
+  modules/
+    00_course_overview/
+      notes.md
+    01_setup_python/
+      notes.md
+      notebooks/
+    02_gemini_langchain/
+      notes.md
+      scripts/
+    03_runnables_chains/
+      notes.md
+      scripts/
+    04_langgraph_runtime/
+      notes.md
+      scripts/
+    05_agents_tools_memory/
+      notes.md
+      scripts/
+    06_human_in_the_loop/
+      notes.md
+      scripts/
+    07_rag_owasp_llm/
+      notes.md
+      notebooks/
+      scripts/
+      shared/
+    reference/
+      glossary.md
+      troubleshooting.md
+      official_docs_links.md
 
   data/
     tickets.jsonl
     support_policy.md
     owasp_top10_llm_applications.pdf
 
-  docs/
-    00_course_notes.md
-    01_setup_and_python_notes.md
-    02_gemini_langchain_notes.md
-    03_runnables_and_chains_notes.md
-    04_langgraph_runtime_notes.md
-    05_agents_tools_memory_notes.md
-    06_human_in_the_loop_notes.md
-    07_rag_notes.md
-    glossary.md
-    troubleshooting.md
-    official_docs_links.md
 ```
 
 ## Suggested Schedule
@@ -170,20 +178,24 @@ Total: 6 hours.
 
 | Time | Topic | Files |
 | --- | --- | --- |
-| 00:00-00:30 | Setup and orientation | `docs/01_setup_and_python_notes.md` |
-| 00:30-02:00 | Python foundations | `notebooks/`, `docs/01_setup_and_python_notes.md` |
-| 02:00-02:35 | Direct Gemini API | `docs/02_gemini_langchain_notes.md`, `scripts/01_gemini_smoke_test.py` |
-| 02:35-03:20 | LangChain overview, prompts, chains | `docs/02_gemini_langchain_notes.md`, `docs/03_runnables_and_chains_notes.md` |
-| 03:20-04:15 | Runnables and support pipeline | `scripts/02_runnables_building_blocks.py`, `scripts/03_gemini_summarization_chain.py`, `scripts/04_ticket_classification_chain.py`, `scripts/05_support_ticket_pipeline.py` |
-| 04:15-05:15 | LangGraph state and runtime | `docs/04_langgraph_runtime_notes.md`, `scripts/06_langgraph_state_machine_preview.py`, `scripts/07_langgraph_default_merge.py`, `scripts/08_langgraph_reducers.py`, `scripts/09_langgraph_parallel_branches.py`, `scripts/10_checkpointer_basics.py`, `scripts/11_runtime_context_basics.py`, `scripts/12_store_basics.py`, `scripts/13_store_with_runtime_context.py` |
-| 05:15-05:45 | Chat memory and agents | `docs/05_agents_tools_memory_notes.md`, `scripts/14_chat_memory_graph.py`, `scripts/15_agent_with_tools.py`, `scripts/16_agent_memory_and_tools.py` |
-| 05:45-06:00 | Human review preview | `docs/06_human_in_the_loop_notes.md`, `scripts/17_human_review_basics.py`, `scripts/18_agent_human_review_tool.py` |
-| Next module | RAG with local models | `docs/07_rag_notes.md`, `notebooks/07_rag_pdf_parsing_cleaning.ipynb`, `notebooks/08_rag_chunking_strategies.ipynb`, `notebooks/09_rag_embeddings_chroma_indexing.ipynb`, `scripts/19_owasp_llm_rag_chat.py` |
+| 00:00-00:30 | Setup and orientation | `modules/01_setup_python/notes.md` |
+| 00:30-02:00 | Python foundations | `modules/01_setup_python/notebooks/`, `modules/01_setup_python/notes.md` |
+| 02:00-02:35 | Direct Gemini API | `modules/02_gemini_langchain/notes.md`, `modules/02_gemini_langchain/scripts/01_gemini_smoke_test.py` |
+| 02:35-03:20 | LangChain overview, prompts, chains | `modules/02_gemini_langchain/notes.md`, `modules/03_runnables_chains/notes.md` |
+| 03:20-04:15 | Runnables and support pipeline | `modules/03_runnables_chains/scripts/02_runnables_building_blocks.py`, `modules/02_gemini_langchain/scripts/03_gemini_summarization_chain.py`, `modules/03_runnables_chains/scripts/04_ticket_classification_chain.py`, `modules/03_runnables_chains/scripts/05_support_ticket_pipeline.py` |
+| 04:15-05:15 | LangGraph state and runtime | `modules/04_langgraph_runtime/notes.md`, `modules/04_langgraph_runtime/scripts/06_langgraph_state_machine_preview.py`, `modules/04_langgraph_runtime/scripts/07_langgraph_default_merge.py`, `modules/04_langgraph_runtime/scripts/08_langgraph_reducers.py`, `modules/04_langgraph_runtime/scripts/09_langgraph_parallel_branches.py`, `modules/04_langgraph_runtime/scripts/10_checkpointer_basics.py`, `modules/04_langgraph_runtime/scripts/11_runtime_context_basics.py`, `modules/04_langgraph_runtime/scripts/12_store_basics.py`, `modules/04_langgraph_runtime/scripts/13_store_with_runtime_context.py` |
+| 05:15-05:45 | Chat memory and agents | `modules/05_agents_tools_memory/notes.md`, `modules/04_langgraph_runtime/scripts/14_chat_memory_graph.py`, `modules/05_agents_tools_memory/scripts/15_agent_with_tools.py`, `modules/05_agents_tools_memory/scripts/16_agent_memory_and_tools.py` |
+| 05:45-06:00 | Human review preview | `modules/06_human_in_the_loop/notes.md`, `modules/06_human_in_the_loop/scripts/17_human_review_basics.py`, `modules/06_human_in_the_loop/scripts/18_agent_human_review_tool.py` |
+| Next module | RAG with local models | `modules/07_rag_owasp_llm/notes.md`, `modules/07_rag_owasp_llm/notebooks/07_rag_pipeline_walkthrough.ipynb`, `modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py`, `modules/07_rag_owasp_llm/scripts/20_owasp_llm_rag_chat.py` |
 
-## Teaching Notes
+## Learning Notes
 
-- Keep the chronology strict: Python first, direct API second, LangChain composition third, LangGraph runtime fourth, agents last.
-- Introduce one runtime concept at a time before combining concepts.
-- Explanations belong in comments and Markdown notes. Script output should show inspected values, not lecture text.
-- The support-ticket scenario should stay consistent across examples.
-- The RAG module uses OWASP Top 10 for LLM Applications instead of the support-ticket scenario because it needs a longer source document for parsing and chunking.
+- The course starts with Python, then direct model calls, LangChain composition,
+  LangGraph runtime, agents, human review, and RAG.
+- Each script focuses on one main runtime concept before later examples combine
+  multiple concepts.
+- Script output is mainly for inspected runtime values such as state, messages,
+  retrieved chunks, and final answers.
+- Most examples use the support-ticket scenario. The RAG module uses OWASP Top
+  10 for LLM Applications because parsing and chunking need a longer source
+  document.

@@ -5,8 +5,8 @@ This document explains the agent examples.
 Scripts:
 
 ```bash
-python scripts/15_agent_with_tools.py
-python scripts/16_agent_memory_and_tools.py
+python modules/05_agents_tools_memory/scripts/15_agent_with_tools.py
+python modules/05_agents_tools_memory/scripts/16_agent_memory_and_tools.py
 ```
 
 ## What `create_agent` Returns
@@ -122,7 +122,7 @@ The model does not run arbitrary code. It can only request tools you provide.
 Script:
 
 ```bash
-python scripts/15_agent_with_tools.py
+python modules/05_agents_tools_memory/scripts/15_agent_with_tools.py
 ```
 
 Tools:
@@ -195,7 +195,7 @@ The checkpointer stores the agent's message state.
 Script:
 
 ```bash
-python scripts/16_agent_memory_and_tools.py
+python modules/05_agents_tools_memory/scripts/16_agent_memory_and_tools.py
 ```
 
 This script combines:

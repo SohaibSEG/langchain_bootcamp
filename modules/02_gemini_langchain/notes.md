@@ -5,10 +5,10 @@ This document explains the first model scripts and the LangChain pieces used lat
 Scripts:
 
 ```bash
-python scripts/01_gemini_smoke_test.py
-python scripts/03_gemini_summarization_chain.py
-python scripts/04_ticket_classification_chain.py
-python scripts/05_support_ticket_pipeline.py
+python modules/02_gemini_langchain/scripts/01_gemini_smoke_test.py
+python modules/02_gemini_langchain/scripts/03_gemini_summarization_chain.py
+python modules/03_runnables_chains/scripts/04_ticket_classification_chain.py
+python modules/03_runnables_chains/scripts/05_support_ticket_pipeline.py
 ```
 
 ## Direct Gemini API
@@ -169,7 +169,7 @@ Output:
 Script:
 
 ```bash
-python scripts/03_gemini_summarization_chain.py
+python modules/02_gemini_langchain/scripts/03_gemini_summarization_chain.py
 ```
 
 Concept:
@@ -197,7 +197,7 @@ This script comes before more complex runnable examples because it shows the sma
 Script:
 
 ```bash
-python scripts/04_ticket_classification_chain.py
+python modules/03_runnables_chains/scripts/04_ticket_classification_chain.py
 ```
 
 The classification chain asks Gemini to classify a support ticket.
@@ -254,7 +254,7 @@ This is better than parsing a paragraph.
 Script:
 
 ```bash
-python scripts/05_support_ticket_pipeline.py
+python modules/03_runnables_chains/scripts/05_support_ticket_pipeline.py
 ```
 
 The pipeline introduces a realistic support flow:
