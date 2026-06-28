@@ -20,6 +20,7 @@ modules/04_langgraph_runtime/notes.md
 modules/05_agents_tools_memory/notes.md
 modules/06_human_in_the_loop/notes.md
 modules/07_rag_owasp_llm/notes.md
+modules/08_mcp_owasp_tools/notes.md
 ```
 
 Reference pages:
@@ -46,6 +47,7 @@ Python data
   -> agents with chat history and long-term memory
   -> human review for risky actions
   -> RAG over a document with local models
+  -> MCP tools over the RAG index
 ```
 
 Each layer depends on the previous one. Agents are easier to understand after
@@ -82,6 +84,8 @@ tools as Python functions
 | `18_agent_human_review_tool.py` | Human review before risky agent tool |
 | `19_owasp_llm_build_index.py` | Offline OWASP RAG indexing |
 | `20_owasp_llm_rag_chat.py` | Online chat over the OWASP RAG index |
+| `21_owasp_mcp_server.py` | MCP server exposing OWASP RAG tools |
+| `22_owasp_mcp_agent_client.py` | MCP client agent consuming remote tools |
 
 ## Core Contracts
 
@@ -158,6 +162,16 @@ answer = rag_chain.invoke(
 The RAG notebook walks through Docling parsing, chunking, and retrieval
 inspection. The offline RAG script builds the Chroma index from the OWASP PDF.
 The online RAG script loads that existing index.
+
+### MCP Contract
+
+```text
+server exposes tools
+client consumes tools
+```
+
+The MCP server in this repo exposes OWASP RAG search tools over HTTP.
+The MCP client loads those remote tools and gives them to a LangChain agent.
 
 ## How To Read The Examples
 

@@ -9,8 +9,10 @@ langchain-google-genai
 langchain-text-splitters
 langchain-chroma
 langchain-ollama
+langchain-mcp-adapters
 langgraph
 docling
+mcp[cli]
 
 jupyter
 ipykernel

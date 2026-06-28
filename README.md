@@ -27,6 +27,7 @@ The story is a realistic customer support triage and escalation assistant. Each 
 19. Human review for risky actions
 20. RAG indexing and retrieval
 21. Local RAG chat with OWASP Top 10 for LLM Applications
+22. MCP server and client for OWASP RAG tools
 
 ## Setup
 
@@ -88,6 +89,7 @@ modules/04_langgraph_runtime/notes.md
 modules/05_agents_tools_memory/notes.md
 modules/06_human_in_the_loop/notes.md
 modules/07_rag_owasp_llm/notes.md
+modules/08_mcp_owasp_tools/notes.md
 ```
 
 Reference docs:
@@ -123,6 +125,8 @@ python modules/06_human_in_the_loop/scripts/17_human_review_basics.py
 python modules/06_human_in_the_loop/scripts/18_agent_human_review_tool.py
 python modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py
 python modules/07_rag_owasp_llm/scripts/20_owasp_llm_rag_chat.py
+python modules/08_mcp_owasp_tools/scripts/21_owasp_mcp_server.py
+python modules/08_mcp_owasp_tools/scripts/22_owasp_mcp_agent_client.py
 ```
 
 ## Repository Map
@@ -160,6 +164,9 @@ langchain-day1/
       notebooks/
       scripts/
       shared/
+    08_mcp_owasp_tools/
+      notes.md
+      scripts/
     reference/
       glossary.md
       troubleshooting.md
@@ -187,6 +194,7 @@ Total: 6 hours.
 | 05:15-05:45 | Chat memory and agents | `modules/05_agents_tools_memory/notes.md`, `modules/04_langgraph_runtime/scripts/14_chat_memory_graph.py`, `modules/05_agents_tools_memory/scripts/15_agent_with_tools.py`, `modules/05_agents_tools_memory/scripts/16_agent_memory_and_tools.py` |
 | 05:45-06:00 | Human review preview | `modules/06_human_in_the_loop/notes.md`, `modules/06_human_in_the_loop/scripts/17_human_review_basics.py`, `modules/06_human_in_the_loop/scripts/18_agent_human_review_tool.py` |
 | Next module | RAG with local models | `modules/07_rag_owasp_llm/notes.md`, `modules/07_rag_owasp_llm/notebooks/07_rag_pipeline_walkthrough.ipynb`, `modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py`, `modules/07_rag_owasp_llm/scripts/20_owasp_llm_rag_chat.py` |
+| Next module | MCP over OWASP RAG tools | `modules/08_mcp_owasp_tools/notes.md`, `modules/08_mcp_owasp_tools/scripts/21_owasp_mcp_server.py`, `modules/08_mcp_owasp_tools/scripts/22_owasp_mcp_agent_client.py` |
 
 ## Learning Notes
 

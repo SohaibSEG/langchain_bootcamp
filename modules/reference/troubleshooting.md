@@ -45,6 +45,38 @@ python modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py
 
 The Chroma index is created by the offline indexing script.
 
+## MCP Scripts Cannot Import MCP Packages
+
+Install the updated requirements:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+The MCP module needs `mcp[cli]` and `langchain-mcp-adapters`.
+
+## MCP Server Cannot Find The Chroma Index
+
+Build the OWASP index before starting the MCP server:
+
+```bash
+python modules/07_rag_owasp_llm/scripts/19_owasp_llm_build_index.py
+```
+
+## MCP Client Cannot Connect To The Server
+
+Start the MCP server in a separate terminal:
+
+```bash
+python modules/08_mcp_owasp_tools/scripts/21_owasp_mcp_server.py
+```
+
+The client connects to:
+
+```text
+http://localhost:8000/mcp
+```
+
 ## RAG Chat Cannot Reach Ollama
 
 Start Ollama.

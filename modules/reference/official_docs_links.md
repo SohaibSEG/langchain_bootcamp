@@ -9,6 +9,8 @@
 - LangChain tools: https://docs.langchain.com/oss/python/langchain/tools
 - LangChain short-term memory: https://docs.langchain.com/oss/python/langchain/short-term-memory
 - LangChain human in the loop: https://docs.langchain.com/oss/python/langchain/human-in-the-loop
+- LangChain MCP: https://docs.langchain.com/oss/python/langchain/mcp
+- LangChain MCP adapters: https://github.com/langchain-ai/langchain-mcp-adapters
 - LangGraph docs: https://docs.langchain.com/oss/python/langgraph/overview
 - LangGraph graph API: https://docs.langchain.com/oss/python/langgraph/use-graph-api
 - LangGraph persistence and checkpointers: https://docs.langchain.com/oss/python/langgraph/persistence
@@ -24,4 +26,6 @@
 - Ollama `gemma4:e4b` model: https://ollama.com/library/gemma4:e4b
 - Docling quickstart: https://docling-project.github.io/docling/getting_started/quickstart/
 - Docling `DocumentConverter`: https://docling-project.github.io/docling/reference/document_converter/
+- MCP Python SDK: https://github.com/modelcontextprotocol/python-sdk
+- MCP documentation: https://modelcontextprotocol.io/docs
 - OWASP Top 10 for LLM Applications PDF source: https://github.com/GURPREETKAURJETHRA/LLM-SECURITY/blob/main/OWASP%20TOP%2010%20FOR%20LLM%20APPLICATIONS.pdf

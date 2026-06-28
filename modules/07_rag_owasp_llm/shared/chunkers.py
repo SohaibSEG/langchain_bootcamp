@@ -9,7 +9,11 @@ from pydantic import BaseModel, Field
 
 RECURSIVE_CHUNK_SIZE = 1200
 RECURSIVE_CHUNK_OVERLAP = 180
-SEMANTIC_MAX_SECTION_CHARS = 5000
+SEMANTIC_PRECHUNK_TARGET_CHARS = 5000
+
+
+def log_chunker_step(message: str) -> None:
+    print(message, flush=True)
 
 
 class SemanticChunkOutput(BaseModel):
@@ -29,51 +33,48 @@ def recursive_chunks(
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
-        separators=[
-            "\n# ",
-            "\n## ",
-            "\n### ",
-            "\n#### ",
-            "\n##### ",
-            "\n###### ",
-            "\n\n",
-            "\n",
-            ". ",
-            " ",
-            "",
-        ],
     )
     return splitter.split_text(text)
 
 
 def split_markdown_for_llm_calls(
     text: str,
-    max_chars: int = SEMANTIC_MAX_SECTION_CHARS,
+    target_chars: int = SEMANTIC_PRECHUNK_TARGET_CHARS,
 ) -> list[str]:
-    # Semantic chunking still needs a maximum input size per model call.
-    # This split is only a prompt-size guardrail; Gemma does the semantic split.
-    raw_sections = re.split(r"(?=\n#{1,6}\s)", text)
-    sections = []
+    # First split on H1/H2 Markdown headings so we keep section boundaries.
+    # Then combine nearby small sections into one model input. This avoids
+    # wasting a model call on tiny sections like a title or short introduction.
+    # If a section is already longer than the target, keep it whole and let the
+    # semantic model split it.
+    raw_sections = re.split(r"(?=\n#{1,2}\s)", text)
+    sections = [section.strip() for section in raw_sections if section.strip()]
+    batches = []
+    current_batch = []
+    current_chars = 0
 
-    for section in raw_sections:
-        section = section.strip()
-        if not section:
-            continue
-        if len(section) <= max_chars:
-            sections.append(section)
-            continue
+    for section in sections:
+        section_chars = len(section)
+        next_chars = current_chars + section_chars + 2
 
-        for start in range(0, len(section), max_chars):
-            sections.append(section[start : start + max_chars].strip())
+        if current_batch and next_chars > target_chars:
+            batches.append("\n\n".join(current_batch))
+            current_batch = []
+            current_chars = 0
 
-    return sections
+        current_batch.append(section)
+        current_chars += section_chars + 2
+
+    if current_batch:
+        batches.append("\n\n".join(current_batch))
+
+    return batches
 
 
 def gemma_semantic_chunks(
     text: str,
     model: str | None = None,
     base_url: str | None = None,
-    max_section_chars: int = SEMANTIC_MAX_SECTION_CHARS,
+    prechunk_target_chars: int = SEMANTIC_PRECHUNK_TARGET_CHARS,
 ) -> list[str]:
     model = model or os.getenv("OLLAMA_CHAT_MODEL", "gemma4:e4b")
     base_url = base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
@@ -88,8 +89,20 @@ def gemma_semantic_chunks(
         include_raw=True,
     )
     chunks = []
+    sections = split_markdown_for_llm_calls(
+        text,
+        target_chars=prechunk_target_chars,
+    )
 
-    for section in split_markdown_for_llm_calls(text, max_chars=max_section_chars):
+    log_chunker_step(
+        f"Semantic chunker: {len(sections)} model calls after batching sections"
+    )
+
+    for index, section in enumerate(sections, start=1):
+        log_chunker_step(
+            f"Semantic chunker: processing section {index}/{len(sections)} "
+            f"({len(section)} characters)"
+        )
         result = structured_llm.invoke(
             [
                 SystemMessage(
@@ -98,7 +111,10 @@ def gemma_semantic_chunks(
                         "Preserve the original wording.\n"
                         "Keep headings with the content they introduce.\n"
                         "Do not summarize.\n"
-                        "Return only chunks that contain source text.\n"
+                        "Merge short headings or short paragraphs with nearby related content.\n"
+                        "Split long sections into coherent retrieval chunks.\n"
+                        "Do not return empty chunks or heading-only chunks.\n"
+                        "Each chunk should be useful on its own when retrieved by a vector search.\n"
                         "Return structured output that matches this schema: "
                         '{"chunks": ["first chunk", "second chunk"]}'
                     )
@@ -118,5 +134,7 @@ def gemma_semantic_chunks(
             chunk = chunk.strip()
             if chunk:
                 chunks.append(chunk)
+
+        log_chunker_step(f"Semantic chunker: total chunks so far {len(chunks)}")
 
     return chunks
